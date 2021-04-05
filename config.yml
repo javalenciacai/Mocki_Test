@@ -1,9 +1,35 @@
 name: mocki
-port: 3000
+port: 3001
+branchFilter: master|develop
 endpoints:
+  - path: /
+    method: get
+    responses:
+      - statusCode: 200
+        body:
+          message: {"Hello!":1234}
   - path: /hello
     method: get
     responses:
       - statusCode: 200
         body:
-          message: Hello from Mocki!
+          message: {Hello from Mocki!}
+  - path: /fake
+    method: get
+    responses:
+      - statusCode: 200
+        body:
+          firstName: !Fake firstName
+          lastName: !Fake lastName
+          email: !Fake email
+          address: !Fake streetAddress
+          phone: !Fake phoneNumber
+          createdAt: !Fake pastDate
+          company: !Fake company
+  - path: /delay
+    method: get
+    responses:
+      - statusCode: 200
+        delay: 1000
+        body:
+          message: delayed by 1000 ms
